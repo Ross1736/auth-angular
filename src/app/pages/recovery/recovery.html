@@ -1,0 +1,22 @@
+<div class="container">
+  <h1>Recuperar contraseña</h1>
+
+  <form [formGroup]="form" (ngSubmit)="onRecovery()">
+    <mat-form-field>
+      <mat-label>Correo</mat-label>
+      <input
+        matInput
+        placeholder="pat@gmail.com"
+        formControlName="email"
+        required
+        (focus)="clearError()"
+      />
+    </mat-form-field>
+
+    <button type="submit" matButton="filled" [disabled]="isLoading">
+      Enviar
+    </button>
+  </form>
+
+  <p class="error-message">{{ errorMessage }}</p>
+</div>
