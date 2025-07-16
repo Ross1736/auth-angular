@@ -18,8 +18,7 @@ Aplicación web desarrollada en **Angular 20** para la gestión de tareas. Utili
 
 - [Angular 20](https://angular.io/)
 - [Angular Material](https://material.angular.io/)
-- [Lucide Angular](https://github.com/lucide-icons/lucide-angular)
-- [RxJS](https://rxjs.dev/)
+- [Lucide](https://lucide.dev/)
 - [TypeScript](https://www.typescriptlang.org/)
 - [SCSS](https://sass-lang.com/)
 
