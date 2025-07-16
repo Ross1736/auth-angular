@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { environment } from '../../environments/environments.prod';
+import { environment } from '../../environments/environments';
 import { HttpClient } from '@angular/common/http';
 import {
   IFormUser,
