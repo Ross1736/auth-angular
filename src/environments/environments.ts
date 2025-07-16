@@ -1,5 +1,5 @@
 export const environment = {
-  production: true,
+  production: false,
   apiUrl: '',
   idAuthLocal: 'clientId-A1A',
 };
