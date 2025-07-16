@@ -7,6 +7,7 @@ import { Login } from './pages/login/login';
 import { Register } from './pages/register/register';
 import { Recovery } from './pages/recovery/recovery';
 import { noAuthGuard } from './guards/no-auth.guard';
+import { ResetPassword } from './pages/reset-password/reset-password';
 
 export const routes: Routes = [
   {
@@ -37,6 +38,11 @@ export const routes: Routes = [
   {
     path: 'recovery',
     component: Recovery,
+    canActivate: [noAuthGuard],
+  },
+  {
+    path: 'reset-password',
+    component: ResetPassword,
     canActivate: [noAuthGuard],
   },
   {

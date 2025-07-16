@@ -66,8 +66,24 @@ export class Recovery {
         this.errorMessage = response.message;
         this.isLoading = false;
         this.cdr.markForCheck();
+
+        setTimeout(() => {
+          this.router.navigate(['reset-password'], {
+            queryParams: { email: this.email.value },
+          });
+        }, 5000);
       },
       error: (error: IHttpErrorResponse) => {
+        if (
+          error.error.message ===
+          'Ya se te ha enviado el código de recuperación, revisa tu correo'
+        ) {
+          setTimeout(() => {
+            this.router.navigate(['reset-password'], {
+              queryParams: { email: this.email.value },
+            });
+          }, 3500);
+        }
         this.errorMessage = error.error.message;
         this.isLoading = false;
         this.cdr.markForCheck();

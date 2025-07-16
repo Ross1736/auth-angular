@@ -1,40 +1,217 @@
 .home-container {
   width: 100%;
   height: 100%;
+  padding: 2rem;
+  border-radius: 1rem;
+  background: white;
 
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  gap: 2rem;
 
-  .card {
+  .user {
     width: 100%;
-    padding: 2rem;
-    max-width: 400px;
-    background: #fff;
+    padding: 1.5rem;
     border-radius: 1rem;
-    text-align: center;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 3px 9px rgba(0, 0, 0, 0.1);
 
-    h1 {
-      font-size: 2rem;
-      color: #1f2937;
-      margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+
+    .card {
+      width: fit-content;
+      text-align: start;
+
+      h1 {
+        font-size: 2rem;
+        color: #1f2937;
+      }
+
+      p {
+        color: #4b5563;
+      }
     }
 
-    p {
-      color: #4b5563;
-      margin-bottom: 1.5rem;
-    }
+    @media screen and (max-width: 768px) {
+      .card h1 {
+        font-size: 1rem;
+        margin-bottom: 0.2rem;
+      }
 
-    .btn {
-      display: inline-block;
-      padding: 0.5rem 1.5rem;
-      background-color: #3b82f6;
-      color: #fff;
-      border-radius: 0.5rem;
-      text-decoration: none;
-      font-weight: 600;
-      transition: background-color 0.3s;
+      .card p {
+        font-size: 0.7rem;
+      }
+
+      .button-logout {
+        font-size: 0.7rem;
+        padding: 0.6rem;
+      }
     }
+  }
+
+  @media screen and (max-width: 768px) {
+    .user {
+      padding: 1rem;
+    }
+  }
+
+  .buttons {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 1rem;
+  }
+
+  @media screen and (max-width: 768px) {
+    .buttons {
+      gap: 0.5rem;
+    }
+  }
+
+  .table-wrapper {
+    height: 100%;
+    overflow-y: auto;
+    border-radius: 1rem;
+    box-shadow: 0 3px 9px rgba(0, 0, 0, 0.1);
+
+    .table-container {
+      width: 100%;
+      border-collapse: collapse;
+
+      th {
+        position: sticky;
+        top: 0;
+        z-index: 1;
+
+        background: #424446;
+        color: white;
+      }
+
+      td {
+        color: #3e3f41;
+        background: white;
+      }
+
+      th,
+      td {
+        padding: 1rem 0.8rem;
+        border-bottom: 1px solid whitesmoke;
+        text-align: left;
+        // word-break: break-word;
+        vertical-align: top;
+
+        // inputs y textarea
+        input,
+        textarea {
+          width: 100%;
+          resize: vertical;
+        }
+
+        input {
+          border-radius: 0.5rem 0.5rem 0 0;
+
+          border: none;
+          outline: none;
+          border-bottom: 1px solid blue;
+          background: whitesmoke;
+          padding: 0.8rem 1rem;
+        }
+
+        textarea {
+          border-radius: 0.5rem 0.5rem 0 0;
+
+          border: none;
+          outline: none;
+          border-bottom: 1px solid blue;
+          background: whitesmoke;
+          padding: 0.8rem 1rem;
+          resize: none;
+
+          /* Quitar scrollbar (solo visualmente) */
+          &::-webkit-scrollbar {
+            width: 0px;
+            height: 0px;
+          }
+
+          &::-webkit-scrollbar-thumb {
+            background: transparent;
+          }
+
+          /* Para Firefox */
+          scrollbar-width: none;
+          -ms-overflow-style: none;
+        }
+      }
+
+      // ancho de columnas
+      th:nth-child(1),
+      td:nth-child(1) {
+        min-width: 40px;
+        text-align: center;
+      }
+
+      th:nth-child(2),
+      td:nth-child(2) {
+        width: 30%;
+        min-width: 160px;
+      }
+
+      th:nth-child(3),
+      td:nth-child(3) {
+        width: 40%;
+        min-width: 180px;
+      }
+
+      th:nth-child(5),
+      td:nth-child(5) {
+        width: 25%;
+        min-width: 100px;
+      }
+
+      @media screen and (max-width: 768px) {
+        td,
+        th,
+        input,
+        textarea {
+          font-size: 0.8rem;
+        }
+
+        th:nth-child(2),
+        td:nth-child(2) {
+          min-width: 180px;
+        }
+
+        th:nth-child(3),
+        td:nth-child(3) {
+          min-width: 240px;
+        }
+
+        th:nth-child(4),
+        td:nth-child(4) {
+          min-width: 70px;
+        }
+
+        th:nth-child(5),
+        td:nth-child(5) {
+          min-width: 120px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .home-container {
+    padding: 1rem;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .home-container {
+    border-radius: 0;
   }
 }

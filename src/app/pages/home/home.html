@@ -1,10 +1,101 @@
 <div class="home-container">
-  <div class="card">
-    <h1>¡Bienvenido!</h1>
-    <p>home works!</p>
+  <div class="user">
+    <div class="card">
+      <h1>¡Bienvenido!</h1>
+      <p>Aquí podrás ver tus tareas</p>
+    </div>
 
-    <button type="button" matButton="filled" (click)="onLogout()">
-      Cerrar sesión
+    <button
+      type="button"
+      matButton="filled"
+      (click)="onLogout()"
+      class="button-logout"
+    >
+      Salir
     </button>
+  </div>
+
+  <div class="buttons">
+    @if (!hasTemporaryRow) {
+    <button matButton="text" (click)="addDataTable()">
+      <lucide-angular [img]="SquarePlus"></lucide-angular>
+    </button>
+
+    } @else {
+    <button
+      matButton="text"
+      [disabled]="!dataSource.data.length"
+      (click)="removeDataTable()"
+    >
+      <lucide-angular [img]="SquareX" color="red"></lucide-angular>
+    </button>
+    }
+
+    <button
+      matButton="filled"
+      (click)="onPostTask()"
+      [disabled]="isSaveDisabled"
+      class="demo-button"
+    >
+      Guardar
+    </button>
+  </div>
+
+  <div class="table-wrapper">
+    <table mat-table [dataSource]="dataSource" class="table-container">
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef>ID</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.id === 0 ? "" : element.id }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="title">
+        <th mat-header-cell *matHeaderCellDef>Título</th>
+        <td mat-cell *matCellDef="let element">
+          @if (element.id === 0) {
+          <input [(ngModel)]="element.title" placeholder="Titulo" />
+          } @else {
+          <span>{{ element.title }}</span>
+          }
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef>Descripción</th>
+        <td mat-cell *matCellDef="let element">
+          @if (element.id === 0) {
+          <textarea
+            [(ngModel)]="element.description"
+            rows="1"
+            placeholder="Descripción"
+          ></textarea>
+          } @else {
+          <span>{{ element.description }}</span>
+          }
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="done">
+        <th mat-header-cell *matHeaderCellDef>Estado</th>
+        <td mat-cell *matCellDef="let element">
+          @if (element.id !== 0) { @if (element.done) {
+          <lucide-angular [img]="Check" color="#22c55e"></lucide-angular>
+          } @else {
+          <lucide-angular [img]="X" color="#ef4444"></lucide-angular>
+          } }
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="created">
+        <th mat-header-cell *matHeaderCellDef>Fecha</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.created | date : "dd/MM/yyyy" }}
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
   </div>
 </div>
